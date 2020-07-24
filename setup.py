@@ -6,4 +6,4 @@ setup(name='data3500',
       url='https://github.com/MTSUDataScience/DATA3500',
       author='Jeff Stark',
       author_email='jeff.stark@mtsu.edu',
-      packages=['solutions'])
+      packages=['course_solutions'])
