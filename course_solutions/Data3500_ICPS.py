@@ -559,6 +559,7 @@ def solution2_5():
     cpc = [809, 731, 588, 18, 200, 70, 45] 
     my_dict = {'country':names, 'drives_right':dr, 'cars_per_cap':cpc}
     cars = pd.DataFrame(my_dict)
+    row_labels = ['US', 'AUS', 'JPN', 'IN', 'RU', 'MOR', 'EG'] 
     print('cars looks like:', cars, sep='\n')
     cars.index = row_labels
     print('The updated cars now looks like:', cars, sep='\n')
@@ -670,6 +671,7 @@ def solution2_11():
         print('the ' + x[0] + ' is ' + str(x[1]) + ' sqm.')        
 
 def solution2_12():
+    cars = pd.read_csv('https://raw.githubusercontent.com/MTSUDataScience/DATA3500/master/02_Intro_to_pandas/Data/driving.csv', index_col = 0)
     print('The first line of the for loop is: for l, r in cars.iterrows():')
     print('The second line is: print(l)')
     print('The third line is: print(r)')
@@ -725,6 +727,7 @@ def solution2_15():
     print('We create the new list with: long_member = [member for member in members if len(member) >= 7]')
     print('We create empty strings with: empty_member = [member if len(member) >= 7 else \'\' for member in members]')
     print('')
+    members = ['frank', 'samuel', 'merlin', 'alejando', 'lucas', 'brendan', 'george']
     long_member = [member for member in members if len(member) >= 7]
     empty_member = [member if len(member) >= 7 else '' for member in members]
     print(long_member)
