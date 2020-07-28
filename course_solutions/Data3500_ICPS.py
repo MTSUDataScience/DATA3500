@@ -8,6 +8,12 @@
 ### git commit -m "message here"
 ### git push (login first time)
 
+
+import pandas as pd
+import numpy as np
+import math
+
+
 def solution1_1():
   print('The formula for this problem is: 100 * 1.1 ** 7')
   print('The answer to this problem is:', 100 * 1.1 ** 7)
@@ -191,7 +197,6 @@ def solution1_19():
   print('We calculate C with: C = 2 * r * math.pi')
   print('We calculate A with: A = math.pi * r ** 2')
   print('')
-  import math
   r = 0.43
   C = 2 * r * math.pi
   A = math.pi * r ** 2
@@ -204,7 +209,6 @@ def solution1_20():
   print('Print the type with: print(type(np_baseball))')
   print('')
   baseball = [180, 215, 210, 210, 188, 176, 209, 200]
-  import numpy as np
   np_baseball= np.array(baseball)
   print('np_baseball looks like:', np_baseball)
   print('The type of np_baseball is:', type(np_baseball))
@@ -227,7 +231,6 @@ def solution1_21():
              75, 73, 72, 72, 76, 74, 72, 77, 74, 77, 75, 76, 
              80, 74, 74, 75, 78, 73, 73, 74, 75, 76, 71, 73, 
              74, 76, 76, 74, 73, 74, 70, 72] 
-  import numpy as np
   np_height_in = np.array(height_in)    
   print('np_height_in as a Numpy array looks like:', np_height_in, sep='\n')
   np_height_m = np_height_in * 0.0254
@@ -239,7 +242,6 @@ def solution1_22():
   print('We create bmi as: bmi = np_weight_kg / np_height_m ** 2')
   print('We print our final bmi numpy array as: print(bmi)') 
   print('') 
-  import numpy as np
   height_in = [74, 74, 72, 72, 73, 69, 69, 71, 76, 71, 73, 73, 
              74, 74, 69, 70, 73, 75, 78, 79, 76, 74, 76, 72, 
              71, 75, 77, 74, 73, 74, 78, 73, 75, 73, 75, 75, 
@@ -281,7 +283,6 @@ def solution1_23():
   print('Print light with: print(light)')
   print('Subset bmi with light and print with: print(bmi[light])')
   print('')
-  import numpy as np
   height_in = [74, 74, 72, 72, 73, 69, 69, 71, 76, 71, 73, 73, 
              74, 74, 69, 70, 73, 75, 78, 79, 76, 74, 76, 72, 
              71, 75, 77, 74, 73, 74, 78, 73, 75, 73, 75, 75, 
@@ -322,7 +323,6 @@ def solution1_24():
   print('We print out weight at index 50 with: print(np_weight_lb[50]')
   print('We print a sub-array that contains elements at index 100 up to and including index 100 with: print(np_height_in[100:111]')
   print('')
-  import numpy as np
   height_in = [74, 74, 72, 72, 73, 69, 69, 71, 76, 71, 73, 73, 
              74, 74, 69, 70, 73, 75, 78, 79, 76, 74, 76, 72, 
              71, 75, 77, 74, 73, 74, 78, 73, 75, 73, 75, 75, 
@@ -364,7 +364,6 @@ def solution1_25():
             [215, 102.7],
             [210, 98.5],
             [188, 75.2]]
-  import numpy as np
   np_baseball = np.array(baseball)
   print('np_baseball as a Numpy array looks like:', np_baseball, sep='\n')  
   print('The type of np_baseball is:', type(np_baseball))
@@ -392,7 +391,6 @@ def solution1_26():
             [74, 185],
             [74, 160],
             [69, 180]]
-  import numpy as np
   np_baseball = np.array(baseball)
   np_weight_lb = np_baseball[:,1]
   print('np_baseball as a Numpy array looks like:', np_baseball, sep='\n')  
@@ -438,7 +436,6 @@ def solution1_27():
             [1.1775937 ,   1.98167641, 1],   
             [1.17393793,  17.37732309, 1],
             [1.1125222 ,   5.11167641, 1]]            
-  import numpy as np
   conversion = np.array([0.0254, 0.453592, 1])
   np_baseball = np.array(baseball)
   np_updated = np.array(updated)
@@ -465,7 +462,6 @@ def solution1_28():
               [74, 185, 21.83],
               [74, 160, 22.76],
               [69, 180, 25.12]]  
-  import numpy as np
   np_baseball = np.array(baseball)
   np_height_in = np_baseball[:,0]
   print('The mean value is:', np.mean(np_height_in))
@@ -485,7 +481,6 @@ def solution1_29():
   heights = [191, 187, 188, 194, 192, 190, 177, 187, 171, 159,
             185, 199, 185, 174, 177, 171, 159, 172, 171, 179,
             195, 185, 184, 188, 174, 179, 176, 168, 166, 161]
-  import numpy as np
   np_positions = np.array(positions)
   np_heights = np.array(heights)
   gk_heights = np_heights[np_positions == 'GK']
@@ -554,7 +549,6 @@ def solution2_4():
     print('The updated europe looks like:', europe, sep='\n') 
 
 def solution2_5():
-    import pandas as pd
     print('You create my_dict with: my_dict = {\'country\':names, \'drives_right\':dr, \'cars_per_cap\':cpc}')
     print('We convert this to a DataFrame with: cars = pd.DataFrame(my_dict)')
     print('We print out cars with: print(cars)')
@@ -574,7 +568,6 @@ def solution2_6():
     print('My driving file is located in the subfolder Data, your file may be elsewhere.')
     print('We print cars with: print(cars)')
     print('')
-    import pandas as pd
     cars = pd.read_csv('Data/driving.csv', index_col = 0)
     print('Cars looks like:', cars, sep='\n')     
 
@@ -586,7 +579,6 @@ def solution2_7():
     print('We print the first 3 observations with: print(cars[0:3])')
     print('We print the 4th, 5th, and 6th observations with: print(cars[3:6])')
     print('')
-    import pandas as pd
     cars = pd.read_csv('Data/driving.csv', index_col = 0)
     print('country as a Series looks like:', cars['country'], sep='\n')
     print('country as a DataFrame looks like:', cars[['country']], sep='\n')
@@ -603,7 +595,6 @@ def solution2_8():
     print('We print drives_right as a DataFrame with: print(cars.loc[:,\'drives_right\'])')
     print('We print cars_per_cap and drives_right as a DataFrame with: print(cars.loc[:,[\'cars_per_cap\', \'drives_right\']])')
     print('')
-    import pandas as pd
     cars = pd.read_csv('Data/driving.csv', index_col = 0)
     print('Hong Kong looks like:', cars.loc['HK'], sep='\n')
     print('United Kingdom and Luxembourg look like:', cars.loc[['UK', 'LU']], sep='\n')
@@ -625,7 +616,6 @@ def solution2_9():
     print('Print lots_of_cars with: print(lots_of_cars)')
     print('Create medium with: medium = cars.loc[(cars[\'cars_per_cap\'] > 100) & (cars[\'cars_per_cap\'] < 500)]')
     print('')
-    import pandas as pd
     cars = pd.read_csv('Data/driving.csv', index_col = 0)
     dr = cars['drives_right']
     print('dr looks like:', dr, sep='\n')
@@ -741,7 +731,6 @@ def solution2_15():
     print(empty_member)    
 
 def solution3_1():
-    import pandas as pd
     print('We import ex1 with: df = pd.read_csv(\'data/ex1.csv\')')
     print('We import ex2 with no headers with: df_noheader = pd.read_csv(\'data/ex2.csv\', header=None)')
     print('We import ex2 with our headers with: df_header = pd.read_csv(\'data/ex2.csv\', names=[\'a\', \'b\', \'c\', \'d\', \'message\'])')
