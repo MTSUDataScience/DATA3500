@@ -754,6 +754,22 @@ def solution3_2():
     print('The clean data looks like:', result, sep='\n')    
 
 def solution3_3():
+    df = pd.DataFrame(np.random.randn(7,3))
+    df.iloc[1:4, 1] = np.nan
+    df.iloc[1:2, 2] = np.nan
+    print('We fill values with a 0 with: df.fillna(0)')
+    print('We fill values with a forward fill with: df.fillna(method=\'ffill\')')
+    print('We fill values with a limited forward fill with: df.fillna(method=\'ffill\', limit=2)')
+    print('We fill values with a back fill with: df.fillna(method=\'bfill\')')
+    print('We fill values with the mean with: df.fillna(df.mean())')
+    print('')
+    print('The original data frame looks like:', df, sep='\n')
+    print('The 0 fill looks like:', df.fillna(0), sep='\n')
+    print('The forward fill looks like:', df.fillna(method='ffill'), sep='\n')
+    print('The limited forward fill looks like:', df.fillna(method='ffill', limit=2), sep='\n')
+    print('The back fill looks like:', df.fillna(method='bfill'), sep='\n')    
+
+def solution3_4():
     print('We examine ex5 with: pd.read_csv(\'data/ex5.csv\')')
     print('We create our additional missing values with: add_missing = {\'message\': [\'foo\']}')
     print('We import the data with: pd.read_csv(\'data/ex5.csv\', na_values = add_missing)')
@@ -763,6 +779,56 @@ def solution3_3():
     add_missing={'message': ['foo']}
     result_new=pd.read_csv('data/ex5.csv', na_values=add_missing)
     print('The new results look like:', result_new, sep='\n')
+    
+def solution3_5():
+    states = pd.DataFrame({'state': ['Ohio', 'California', 'California', 'Ohio', 'Ohio','California'],
+                       'year' : ['2005', '2005', '2006', '2006', '2007','2006'],
+                       'pop': [2.2, 7.2, 3.2, 7.7, 2.1, 7.7]})
+    tips = pd.read_csv('data/tips.txt')
+    small_tip = tips[: 25]
+    small_tip.iloc[16::, [2]] = 'Yes'
+    small_tip.iloc[2:4, [1]] = np.nan
+    small_tip.iloc[6:21, [1]] = np.nan
+    small_tip.iloc[23::, [1]] = np.nan
+    print('We get the state average with: states[\'pop\'].groupby(states[\'state\']).mean()')
+    print('We get the state/year average with: states[\'pop\'].groupby([states[\'state\'], states[\'year\']]).mean()')
+    print('We get the state standard deviation with: states[\'pop\'].groupby(states[\'state\']).std()')
+    print('We backfill by smoker in the original data frame with: small_tip[\'tip\'] = small_tip[\'tip\'].groupby(small_tip[\'smoker\']).fillna(method=\'bfill\')')
+    print('')
+    print('The state average is:', states['pop'].groupby(states['state']).mean(), sep='\n')
+    print('The state/year average is:', states['pop'].groupby([states['state'],states['year']]).mean(), sep='\n')
+    print('The state standard deviation is:', states['pop'].groupby(states['state']).std())
+    print('The original data frame looks like:', small_tip, sep='\n')
+    small_tip['tip'] = small_tip['tip'].groupby(small_tip['smoker']).fillna(method='bfill')
+    print('The backfilled by smoker data is:', small_tip, sep='\n')
+    
+def solution3_6():
+    df = pd.DataFrame({'key': ['foo', 'bar', 'baz'],
+                  'A': [1,2,3],
+                  'B': [4,5,6],
+                  'C': [7,8,9]})
+    print('We can melt the dataframe with: df_melted = pd.melt(df, [\'key\'])')
+    print('We can go back to the original with: df_original = df_melted.pivot(index=\'key\', columns=\'variable\', values=\'value\')')
+    print('We can reset the index with: df_original = df_original.reset_index()')
+    print('')
+    df_melted = pd.melt(df, ['key'])
+    df_original = df_melted.pivot(index='key',columns='variable',values='value')
+    df_original = df_original.reset_index()
+    print('The melted dataframe looks like:', df_melted, sep='\n')
+    print('The final version of df_original looks like:', df_original, sep='\n')    
+
+def solution3_7():
+    df1 = pd.DataFrame({'lkey': ['b','b','a','c','a','a','b'],
+                   'data1': range(7)})
+    df2 = pd.DataFrame({'rkey': ['a','b','d'],
+                   'data2': range(3)})
+    print('We can merge these two with: pd.merge(df1, df2, left_on=\'lkey\', right_on=\'rkey\')')
+    print('We can do an outer merge with: pd.merge(df1, df2, left_on=\'lkey\', right_on=\'rkey\', how=\'outer\')')
+    print('')
+    df_merged = pd.merge(df1, df2, left_on='lkey', right_on='rkey')
+    df_outer = pd.merge(df1, df2, left_on='lkey', right_on='rkey', how='outer')
+    print('The merged dataframe looks like:', df_merged, sep='\n')
+    print('The outer merge looks like:', df_outer, sep='\n')    
     
     
 #########################
