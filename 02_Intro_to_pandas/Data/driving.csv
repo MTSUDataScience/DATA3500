@@ -1,0 +1,8 @@
+,cars_per_cap,country,drives_right
+US,809,United States,TRUE
+UK,621,United Kingdom,FALSE
+HK,577,Hong Kong,FALSE
+SG,532,Singapore,FALSE
+RU,200,Russia,TRUE
+IT,70,Italy,TRUE
+LU,41,Luxembourg,TRUE
