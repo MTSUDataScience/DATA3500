@@ -680,7 +680,7 @@ def solution2_11():
         print('the ' + x[0] + ' is ' + str(x[1]) + ' sqm.')        
 
 def solution2_12():
-    cars = pd.read_csv('https://raw.githubusercontent.com/MTSUDataScience/DATA3500/master/02_Intro_to_pandas/Data/driving.csv', index_col = 0)
+    cars = pd.read_csv('Data/driving.csv', index_col = 0)
     print('The first line of the for loop is: for l, r in cars.iterrows():')
     print('The second line is: print(l)')
     print('The third line is: print(r)')
