@@ -13,7 +13,7 @@ import pandas as pd
 import numpy as np
 import math
 
-
+    
 def solution1_1():
   print('The formula for this problem is: 100 * 1.1 ** 7')
   print('The answer to this problem is:', 100 * 1.1 ** 7)
@@ -24,6 +24,8 @@ def solution1_2():
 
 def solution1_3():
   print('The formula for this problem is: bmi = weight / height ** 2')
+  height = 1.79
+  weight = 65.2
   bmi = weight / height ** 2
   print('The answer to this problem is:', bmi)
 
@@ -66,6 +68,7 @@ def solution1_7():
   result = 100 * 1.10 ** 7
   print('The output will now look like:','I started with ' + str(savings) + ' and now have ' + str(result) + '.')
   print('')
+  pi_string = '3.1415926'
   print('Convert pi_string to a float with: pi_float = float(pi_string)')
   print('You can check the type of pi_float with: print(type(pi_float))')
   pi_float = float(pi_string)
@@ -125,6 +128,7 @@ def solution1_12():
   print('We can correct bathroom with: areas[-1] = 10.50')
   print('We can change bedroom to master bedroom with: areas[6] = \'master bedroom\'')
   print('')
+  areas = ["hallway", 11.25, "kitchen", 18.0, "living room", 20.0, "bedroom", 10.75, "bathroom", 9.50]
   areas[-1] = 10.50
   areas[6] = 'master bedroom'
   print('Our new list looks like:', areas)  
@@ -133,6 +137,7 @@ def solution1_13():
   print('You can add the elements with: areas_1 = areas + [\'poolhouse\', 24.5]')
   print('You can add the garage elements with: areas_2 = areas_1 + [\'garage\', 15.45')
   print('')
+  areas = ["hallway", 11.25, "kitchen", 18.0, "living room", 20.0, "bedroom", 10.75, "bathroom", 9.50]
   areas_1 = areas + ['poolhouse', 24.5]
   areas_2 = areas_1 + ['garage', 15.45]
   print('areas_1 now looks like:', areas_1)
@@ -143,6 +148,8 @@ def solution1_14():
   print('You can use len and print together as: print(len(var1))')
   print('You can create out2 as: out2 = int(var2)')
   print('')
+  var1 = [1, 2, 3, 4]
+  var2 = True
   print('The solution to print and type is:', type(var1))
   print('The solution to len and print is:', len(var1))
   out2 = int(var2)
@@ -153,6 +160,8 @@ def solution1_15():
   print('You can sort full as: full_sorted = sorted(full, reverse = True)')
   print('You can print full_sorted with: print(full_sorted)')
   print('')
+  first = [11.25, 18.0, 20.0]
+  second = [10.75, 9.50]
   full = first + second
   print('full looks like:', full)
   full_sorted = sorted(full, reverse = True)
