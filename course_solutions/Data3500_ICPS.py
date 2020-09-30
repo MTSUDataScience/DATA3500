@@ -843,6 +843,115 @@ def solution3_7():
     print('The outer merge looks like:', df_outer, sep='\n')    
     
     
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+%matplotlib inline
+
+
+def solution4_1():
+    print('The solution code is too lengthy to present here. See our class notes for graphing Austin vs. Seattle weather. One beginning piece of advice would be to create two seperate files, one for each station. The solution graphs are presented below.')
+    station1 = seattle.loc[seattle['STATION'] == 'USC00456295']
+    station2 = seattle.loc[seattle['STATION'] == 'USC00454486']
+    fig, ax = plt.subplots(2,1, sharey=True) # sharey=True ensures all plots have the same y-axis scale.
+
+    ax[0].plot(station1['DATE'], station1['MLY-PRCP-NORMAL'],'k',color='b',label='Station1')
+    ax[0].plot(station1['DATE'], station1['MLY-PRCP-25PCTL'],'k--',color='b',label='Station1 25pct')
+    ax[0].plot(station1['DATE'], station1['MLY-PRCP-75PCTL'],'k--',color='b',label='Station1 75pct')
+    ax[1].plot(station2['DATE'], station2['MLY-PRCP-NORMAL'],'k',color='r',label='Station2')
+    ax[1].plot(station2['DATE'], station2['MLY-PRCP-25PCTL'],'k--',color='r',label='Station2 25pct')
+    ax[1].plot(station2['DATE'], station2['MLY-PRCP-75PCTL'],'k--',color='r',label='Station2 75pct')
+
+    ax[0].set_ylabel('Precipitation (inches)')
+    ax[1].set_ylabel('Precipitation (inches)')
+    ax[1].set_xlabel('Time (month)')
+    ax[0].set_xticks([1,2,3,4,5,6,7,8,9,10,11,12])
+    ax[0].set_xticklabels(['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'])
+    ax[1].set_xticks([1,2,3,4,5,6,7,8,9,10,11,12])
+    ax[1].set_xticklabels(['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'])
+    ax[0].set_title('USC00456295 (Station 1) Rainfall')
+    ax[1].set_title('USC00454486 (Station 2) Rainfall')
+    plt.subplots_adjust(hspace=.5)
+
+    fig = plt.figure()
+    ax = fig.add_subplot()
+    plt.title('Station 1 v. Station 2 Precipitation')
+    plt.xlabel('Time (months)')
+    plt.ylabel('Precipitation (inches)')
+    ax.plot(station1['DATE'], station1['MLY-PRCP-NORMAL'],'k',color='b',label='Station1')
+    ax.plot(station1['DATE'], station1['MLY-PRCP-25PCTL'],'k--',color='b',label='Station1 25pct')
+    ax.plot(station1['DATE'], station1['MLY-PRCP-75PCTL'],'k--',color='b',label='Station1 75pct')
+    ax.plot(station2['DATE'], station2['MLY-PRCP-NORMAL'],'k',color='r',label='Stataion2')
+    ax.plot(station2['DATE'], station2['MLY-PRCP-25PCTL'],'k--',color='r',label='Station2 25pct')
+    ax.plot(station2['DATE'], station2['MLY-PRCP-75PCTL'],'k--',color='r',label='Station2 75pct')
+    ax.legend(loc='best')
+
+def solution4_2():
+    print('We create the houston_colors array with: houston_colors = [\'orangered\' if day  ==  330 else \'lightgray\' for day in houston_pollution[\'day\'])]')
+    print('We create our plot with: sns.regplot(x = \'NO2\', y = \'SO2\', data = houston_pollution, fit_reg = False, scatter_kws = {\'facecolors\': houston_colors, \'alpha\': 0.7})')
+    
+    houston_pollution = pollution[pollution.city  ==  'Houston']
+
+    houston_colors = ['orangered' if (day  ==  330) else 'lightgray' 
+                      for day in (houston_pollution['day'])]
+    print('The final visualization looks like:', ) 
+    sns.regplot(x = 'NO2',
+                y = 'SO2',
+                data = houston_pollution,
+                fit_reg = False, 
+                # Send scatterplot argument to color points
+                scatter_kws = {'facecolors': houston_colors, 'alpha': 0.7})  
+
+def solution4_3():
+    print('We find the max value with: max_03 = houston_pollution[\'03\'].max()')
+    print('We make a new column with: houston_pollution[\'point_type\'] = [\'Highest 03 Day\' if 03 == max_03 else \'Others\' for 03 in houston_pollution[\'03\']]')
+    print('Print the visualization with: sns.scatterplot(x=\'N02\', y=\'S02\', hue=\'point_type\', data=houston_pollution')
+    
+    houston_pollution = pollution[pollution.city  ==  'Houston'].copy()
+
+    # Find the highest observed O3 value
+    max_O3 = houston_pollution.O3.max()
+
+    # Make a column that denotes which day had highest O3
+    houston_pollution['point_type'] = ['Highest O3 Day' if O3  ==  max_O3 else 'Others' for O3 in houston_pollution.O3]
+
+    
+    # Encode the hue of the points with the O3 generated column
+    print('The final visualization looks like:')
+    
+    sns.scatterplot(x = 'NO2',
+                    y = 'SO2',
+                    hue = 'point_type',
+                    data = houston_pollution)    
+
+def solution4_4():
+    print('The code is again too lengthy to present here. Instead, I am providing a few snippets of code that will prove helpful.')
+    print('Remember to examine the problems from the end of our notes.')
+    print('Consider using a groupby with more than one level, ie. groupby([\'var1\', \'var2\']).')
+    print('Utilize the for loop from our notes combined with np.where and a conditional test to examine values relative to the median.')
+          
+    house = pd.read_csv('data/train.csv')
+    numeric_features = house.select_dtypes(include=[np.number])
+
+    house['YrSold'] = np.where(house['YrSold'] > 2008, 1, 0)
+    house.groupby(['YrSold','Neighborhood'])['SalePrice'].mean().plot.bar()
+    plt.title('Sale Price by Year/Neighborhood')
+    plt.show()
+
+    house['1stFlrSF'] = np.where(house['1stFlrSF'] > house['1stFlrSF'].median(), 1, 0)
+    house.groupby('1stFlrSF')['SalePrice'].mean().plot.bar()
+    plt.title('Sale Price by 1st Floor Size')
+    plt.show()
+
+    for feature in numeric_features:
+        dataset = numeric_features.copy()
+        dataset[feature] = np.where(dataset[feature] > dataset[feature].median() ,1,0)
+        dataset.groupby(feature)['SalePrice'].mean().plot.bar()
+        plt.title(feature)
+        plt.show()
+        
+        
 #########################
 ####### SOLUTION ########
 #########################    
