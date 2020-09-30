@@ -851,6 +851,7 @@ import seaborn as sns
 
 def solution4_1():
     print('The solution code is too lengthy to present here. See our class notes for graphing Austin vs. Seattle weather. One beginning piece of advice would be to create two seperate files, one for each station. The solution graphs are presented below.')
+    seattle = pd.read_csv('data/seattle_weather.csv')
     station1 = seattle.loc[seattle['STATION'] == 'USC00456295']
     station2 = seattle.loc[seattle['STATION'] == 'USC00454486']
     fig, ax = plt.subplots(2,1, sharey=True) # sharey=True ensures all plots have the same y-axis scale.
@@ -889,7 +890,7 @@ def solution4_1():
 def solution4_2():
     print('We create the houston_colors array with: houston_colors = [\'orangered\' if day  ==  330 else \'lightgray\' for day in houston_pollution[\'day\'])]')
     print('We create our plot with: sns.regplot(x = \'NO2\', y = \'SO2\', data = houston_pollution, fit_reg = False, scatter_kws = {\'facecolors\': houston_colors, \'alpha\': 0.7})')
-    
+    pollution = pd.read_csv('data/pollution_wide.csv')
     houston_pollution = pollution[pollution.city  ==  'Houston']
 
     houston_colors = ['orangered' if (day  ==  330) else 'lightgray' 
@@ -906,7 +907,7 @@ def solution4_3():
     print('We find the max value with: max_03 = houston_pollution[\'03\'].max()')
     print('We make a new column with: houston_pollution[\'point_type\'] = [\'Highest 03 Day\' if 03 == max_03 else \'Others\' for 03 in houston_pollution[\'03\']]')
     print('Print the visualization with: sns.scatterplot(x=\'N02\', y=\'S02\', hue=\'point_type\', data=houston_pollution')
-    
+    pollution = pd.read_csv('data/pollution_wide.csv')    
     houston_pollution = pollution[pollution.city  ==  'Houston'].copy()
 
     # Find the highest observed O3 value
