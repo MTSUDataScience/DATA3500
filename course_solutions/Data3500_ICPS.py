@@ -951,7 +951,72 @@ def solution4_4():
         plt.title(feature)
         plt.show()
         
-        
+def solution5_1():
+    print('We see the average price with: display(stocks_df[\'SPY\'].mean())')
+    print('We see the standard deviations sorted with: display(stocks_df.std().sort_values())')
+    print('We see the maximum price of AMZN with: display(stocks_df[\'AMZN\'].max())')
+    
+def solution5_2():
+    print('Using the show_plot and normalize functions created above, we can graph the normalized data with:')
+    print('show_plot(normalize(stocks_df), \'RAW STOCK PRICES (WITH NORMALIZATION)\')')   
+    
+def solution5_3():
+    print('Using the interactive_plot and normalize functions created above, we can graph the normalized data with:')
+    print('interactive_plot(normalize(stocks_df), \'Normalized Prices\')')
+    
+def solution5_4():
+    print('We can calculate the returns for AMZN with the below code. Do not forget to indent where appropriate.')
+    print('df = stocks_df[\'AMZN\']')
+    print('df_daily_return = df.copy()')
+    print('for j in range(1, len(df)):')
+    print('    df_daily_return[j] = ((df[j]- df[j-1])/df[j-1]) * 100')
+    print('df_daily_return[0] = 0')
+    print('df_daily_return')    
+    
+def solution5_5():
+    print('We can show both sets of plots with the below code:')
+    print('show_plot(stocks_daily_return, \'STOCKS DAILY RETURNS\'')
+    print('interactive_plot(stocks_daily_return, \'STOCK DAILY RETURNS INTERACTIVE\'')
+    print('We can utilize the zooming feature of the interactive plot to find the largest daily return.')
+       
+def solution5_6():
+    print('There is no code for this problem, it is just an interpretation of the above correlation matrix.') 
+    
+def solution5_7():
+    print('There is no code for this problem, it is just an interpretation of the above set of histrograms.')
+    
+def solution5_8():
+    print('We can graph all of our stocks with the below function. Do not forget to indent where appropriate')
+    print('def all_reg_plots(df):')
+    print('    for i in df.columns[1:]:')
+    print('        ax = sns.regplot(x=\'SPY\', y=i, data=df)')
+    print('        plt.show()')
+    print('all_reg_plots(stocks_daily_return)')
+    
+def solution5_9():
+    print('We can calculate expected return for all stocks with the below function. Do not forget to indent where appropriate')
+    print('def all_capm_er(df, rf=0):')
+    print('    for i in df.columns:')
+    print('        if i != \'Date\' and i != \'SPY\':')
+    print('        b, a = np.polyfit(df[\'SPY\'], df[i], 1)')
+    print('        beta[i] = b')
+    print('        alpha[i] = a')
+    print('        rm = df[\'SPY\'].mean() * 252')
+    print('        ER_i = rf + (beta[i] * (rm - rf))')
+    print('        print(i + \' has an expected return of\', ER_i,\'%\')')
+    print('all_capm_er(stocks_daily_return)')
+
+def solution5_10():
+    print('We can create a new set of weights for this problem.')
+    print('First we can observe where Apple, Amazon, and Google are located.')
+    print('We can then create a new array of weights.')
+    print('Finally, we can calculate the new portfolio expected returns.')
+    print(' ')
+    print('display(ER)')
+    print('new_weights = np.array([.5, 0, 0, 0, .3, 0, 0, .2])')
+    print('ER_Portfolio2 = sum(list(ER.values()) * new_weights)')
+    print('ER_Portfolio2')
+    
 #########################
 ####### SOLUTION ########
 #########################    
