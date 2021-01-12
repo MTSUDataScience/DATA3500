@@ -1007,15 +1007,11 @@ def solution5_9():
     print('all_capm_er(stocks_daily_return)')
 
 def solution5_10():
-    print('We can create a new set of weights for this problem.')
-    print('First we can observe where Apple, Amazon, and Google are located.')
-    print('We can then create a new array of weights.')
-    print('Finally, we can calculate the new portfolio expected returns.')
-    print(' ')
-    print('display(ER)')
-    print('new_weights = np.array([.5, 0, 0, 0, .3, 0, 0, .2])')
-    print('ER_Portfolio2 = sum(list(ER.values()) * new_weights)')
-    print('ER_Portfolio2')
+    print('We can update the set of weights for this problem.')
+    print('Repeat the next step for AAPL, AMZN, and GOOG.')
+    print('weight_dictionary[\'AAPL\'] = .5')
+    print('We can calculate the portfolio return with:')
+    print('ER_P2 = sum(ER[k]*weight_dictionary[k] for k in ER)')
     
 #########################
 ####### SOLUTION ########
